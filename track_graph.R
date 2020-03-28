@@ -1,13 +1,18 @@
 library(tidyverse)
 library(jsonlite)
 library(anytime)
-library(plotly)
+# library(plotly)
 library(glue)
 library(gganimate)
 library(data.table)
 library(dtplyr)
 library(janitor)
 library(ggrepel)
+
+
+
+# Load Data ---------------------------------------------------------------
+
 
 state_nums <- 
   fromJSON("https://covidtracking.com/api/states/daily") %>% 
@@ -18,7 +23,6 @@ state_nums <-
 
 
 # Animated progress by state ----------------------------------------------
-
 
 covid_state_anim <-
   state_nums %>%
@@ -85,16 +89,21 @@ covid_state_anim <-
   ) +
   view_follow()
 
-fps <- 6
+#set the animation quality and create the animation
+fps <- 15L
 
-animate(
-  covid_state_anim,
-  duration = 30L,
-  fps = fps,
-  start_pause = 2 * fps,
-  end_pause = 5 * fps,
-  height = 600,
-  width = 800,
-  res = 125
-)
+anim <-
+  animate(
+    covid_state_anim,
+    duration = 30L,
+    fps = fps,
+    start_pause = 2L * fps,
+    end_pause = 5L * fps,
+    height = 600L,
+    width = 800L,
+    res = 125L
+  )
+
+#write out the file
+anim_save("covid_growth_anim.gif", anim)
 
