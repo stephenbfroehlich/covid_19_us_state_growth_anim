@@ -1,7 +1,10 @@
+#Copyright Stephen Froehlich 2020
+#https://github.com/stephenbfroehlich/
+
+
 library(tidyverse)
 library(jsonlite)
 library(anytime)
-# library(plotly)
 library(glue)
 library(gganimate)
 library(data.table)
