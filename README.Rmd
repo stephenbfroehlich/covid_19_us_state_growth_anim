@@ -17,13 +17,15 @@ However, as Johns Hopkins has stopped tracking U.S. State-level data, I instead 
 
 ![](covid_growth_anim.gif)
 
-<font size="2">_Last Updated at `r file.info("covid_growth_anim.gif")$mtime`._</font>
+<font size="2">_Last updated at `r file.info("covid_growth_anim.gif")$mtime` MDT._</font>
 
 ## Analysis
 
 The main take away is that we're all in this together.  
 
 As of March 27, only Washington State (WA) appears to have had any significant impact on the COVID-19 growth rate. 
+
+
 
 ## Code
 
