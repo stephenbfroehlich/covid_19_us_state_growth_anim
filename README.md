@@ -19,7 +19,7 @@ which provides a handy JSON download.
 
 ![](covid_growth_anim.gif)
 
-<font size="2">*Last Updated at 2020-03-28 17:52:43.*</font>
+<font size="2">*Last updated at 2020-03-29 09:20:53 MDT.*</font>
 
 ## Analysis
 
