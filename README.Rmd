@@ -178,9 +178,9 @@ anim_save(pos_fn, pos_anim)
 animate(
   pos_plot,
   duration = gif_params$duration,
-  fps = gif_params$fps,
-  start_pause = gif_params$start_pause_sec * gif_params$fps,
-  end_pause = gif_params$end_pause_sec * gif_params$fps,
+  fps = 5,
+  start_pause = gif_params$start_pause_sec * 5,
+  end_pause = gif_params$end_pause_sec * 5,
   height = gif_params$height_sm,
   width = gif_params$width_sm,
   res = gif_params$res_sm
@@ -287,7 +287,7 @@ For interpretation when the data are noisy like this, remember that it is low _s
 
 ## Social Media-sized gif
 
-For now I am only sharing a social-media sized gif for the "COVID-19 Infections by State" as that's the only one with a clear, compelling narrative at the moment. When do you post, please link back to https://github.com/stephenbfroehlich/covid_19_us_state_growth_anim or https://git.io/Jv7YM so that people can get updated data as it comes out and also see the data provenance - just right-click, copy, and paste.  For Twitter, save and upload.
+For now I am only sharing a social-media sized gif for the "COVID-19 Infections by State" as that's the only one with a clear, compelling narrative at the moment. When do you post, please link back to https://github.com/stephenbfroehlich/covid_19_us_state_growth_anim or https://git.io/Jv7YM so that people can get updated data as it comes out and also see the data provenance - just right-click, copy, and paste.  For Twitter, LinkedIn and possibly others save the gif locally and upload it as a photo to get the gif to work.
 
 ![](covid_growth_anim_sm.gif)
 
