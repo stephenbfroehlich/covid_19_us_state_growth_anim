@@ -287,20 +287,17 @@ For interpretation when the data are noisy like this, remember that it is low _s
 
 ## Social Media-sized gif
 
-For now I am only sharing a social-media sized gif for the "COVID-19 Infections by State" as that's the only one with a clear, compelling narrative at the moment. When do you post, please link back to https://github.com/stephenbfroehlich/covid_19_us_state_growth_anim or https://git.io/Jv7YM so that people can get updated data as it comes out and also see the data provenance - just right-click, copy, and paste.
+For now I am only sharing a social-media sized gif for the "COVID-19 Infections by State" as that's the only one with a clear, compelling narrative at the moment. When do you post, please link back to https://github.com/stephenbfroehlich/covid_19_us_state_growth_anim or https://git.io/Jv7YM so that people can get updated data as it comes out and also see the data provenance - just right-click, copy, and paste.  For Twitter, save and upload.
 
 ![](covid_growth_anim_sm.gif)
 
 &nbsp;
 
-## How to Read These Charts:
+## How to Read These Charts
 
-Basically, we're looking for a state to depart the diagonal line downward, which means that it has exited the exponential growth phase.  For more detail, see the following video from **minutephysics**:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/54XLXg4fYsc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Basically, we're looking for a state to depart the diagonal line downward, which means that it has exited the exponential growth phase.  For more detail, see the following video from **minutephysics**: https://youtu.be/54XLXg4fYsc
 
 &nbsp;
-
 
 ## Code
 
@@ -309,7 +306,6 @@ Basically, we're looking for a state to depart the diagonal line downward, which
 - `covid_*_anim_sm.gif` is each social media-sized animation.
 - `update_gif_readme_cron.R` is the script called by the cron job that updates this page ... it renders `README.Rmd` into `README.md`, including with fresh gifs and then pushes the update to GitHub.
 
-&nbsp;
 &nbsp;
 
 # Appendix - Hospitalization Animations
@@ -474,4 +470,4 @@ anim_save(death_h_fn, death_h_anim)
 
 <font size="1">_Last updated at `r data_time` MDT._</font>
 
-Again, for interpretation when the data are noisy like this, remember that it is low _slope_ that is good more than low _position_. However, any decreased in slope over time indicate that health systems are getting better at preventing deaths. Any increases in slope mean that treatments are becoming less effective for some reason.
+Again, for interpretation when the data are noisy like this, remember that it is low _slope_ that is good more than low _position_. However, any decrease in slope over time indicate that health systems are getting better at preventing deaths. Any increases in slope mean that treatments are becoming less effective for some reason.

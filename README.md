@@ -23,7 +23,7 @@ use](https://blog.datawrapper.de/coronaviruscharts/) page.
 
 ![](covid_growth_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 17:23:55 MDT.*</font>
+<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
 
 This plot visualizes **infections driving more infections**, and the
 main take-away is that ***we’re all in this together***.
@@ -37,7 +37,7 @@ encouraging.
 
 ![](covid_death_p_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 17:23:55 MDT.*</font>
+<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
 
 This plot visualizes **infections driving deaths**.
 
@@ -57,22 +57,18 @@ narrative at the moment. When do you post, please link back to
 <https://github.com/stephenbfroehlich/covid_19_us_state_growth_anim> or
 <https://git.io/Jv7YM> so that people can get updated data as it comes
 out and also see the data provenance - just right-click, copy, and
-paste.
+paste. For Twitter, save and upload.
 
 ![](covid_growth_anim_sm.gif)
 
  
 
-## How to Read These Charts:
+## How to Read These Charts
 
 Basically, we’re looking for a state to depart the diagonal line
 downward, which means that it has exited the exponential growth phase.
-For more detail, see the following video from
-**minutephysics**:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/54XLXg4fYsc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
+For more detail, see the following video from **minutephysics**:
+<https://youtu.be/54XLXg4fYsc>
 
  
 
@@ -100,7 +96,7 @@ become more telling over time.
 
 ![](covid_hosp_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 17:23:55 MDT.*</font>
+<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
 
 It would be surprising if this animation showed any ovbious trends that
 would indicate any home remidies were driving reduced hospitalizations
@@ -111,10 +107,10 @@ to be age differences in the newly-infected populations.
 
 ![](covid_death_h_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 17:23:55 MDT.*</font>
+<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
 
 Again, for interpretation when the data are noisy like this, remember
 that it is low *slope* that is good more than low *position*. However,
-any decreased in slope over time indicate that health systems are
-getting better at preventing deaths. Any increases in slope mean that
-treatments are becoming less effective for some reason.
+any decrease in slope over time indicate that health systems are getting
+better at preventing deaths. Any increases in slope mean that treatments
+are becoming less effective for some reason.
