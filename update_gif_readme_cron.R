@@ -5,11 +5,6 @@
 
 #this is the cron job to push a fresh animation to GitHub
 
-# Generate a fresh gif ----------------------------------------------------
-
-source("track_graph.R", local = TRUE)
-
-
 
 # Regenerate README.md with fresh timestamp from the gif. -----------------
 

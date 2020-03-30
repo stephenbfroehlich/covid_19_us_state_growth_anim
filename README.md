@@ -23,7 +23,7 @@ use](https://blog.datawrapper.de/coronaviruscharts/) page.
 
 ![](covid_growth_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
+<font size="1">*Last updated at 2020-03-30 08:02:26 MDT.*</font>
 
 This plot visualizes **infections driving more infections**, and the
 main take-away is that ***we’re all in this together***.
@@ -37,7 +37,7 @@ encouraging.
 
 ![](covid_death_p_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
+<font size="1">*Last updated at 2020-03-30 08:02:26 MDT.*</font>
 
 This plot visualizes **infections driving deaths**.
 
@@ -83,7 +83,7 @@ For more detail, see the following video from **minutephysics**:
     updates this page … it renders `README.Rmd` into `README.md`,
     including with fresh gifs and then pushes the update to GitHub.
 
-   
+ 
 
 # Appendix - Hospitalization Animations
 
@@ -96,7 +96,7 @@ become more telling over time.
 
 ![](covid_hosp_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
+<font size="1">*Last updated at 2020-03-30 08:02:26 MDT.*</font>
 
 It would be surprising if this animation showed any ovbious trends that
 would indicate any home remidies were driving reduced hospitalizations
@@ -107,7 +107,7 @@ to be age differences in the newly-infected populations.
 
 ![](covid_death_h_anim.gif)
 
-<font size="1">*Last updated at 2020-03-29 18:07:54 MDT.*</font>
+<font size="1">*Last updated at 2020-03-30 08:02:26 MDT.*</font>
 
 Again, for interpretation when the data are noisy like this, remember
 that it is low *slope* that is good more than low *position*. However,
