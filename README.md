@@ -12,7 +12,7 @@ Current Animations
 
 ![](covid_growth_anim.gif)
 
-<font size="1">*Last updated at 2020-03-31 06:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-03-31 12:07:06 MDT.*</font>
 
 This plot visualizes **infections driving more infections**, and the main take-away is that ***we're all in this together***.
 
@@ -22,7 +22,7 @@ As of March 28, only Washington State (WA) appears to have had any significant i
 
 ![](covid_death_p_anim.gif)
 
-<font size="1">*Last updated at 2020-03-31 06:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-03-31 12:07:06 MDT.*</font>
 
 This plot visualizes **infections driving deaths**.
 
@@ -65,7 +65,7 @@ The [COVID Tracking Project](https://covidtracking.com/) is only able to get hos
 
 ![](covid_hosp_anim.gif)
 
-<font size="1">*Last updated at 2020-03-31 06:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-03-31 12:07:06 MDT.*</font>
 
 It would be surprising if this animation showed any ovbious trends that would indicate any home remidies were driving reduced hospitalizations per infection. Instead, the most likely driver of differences is likely to be age differences in the newly-infected populations.
 
@@ -73,6 +73,6 @@ It would be surprising if this animation showed any ovbious trends that would in
 
 ![](covid_death_h_anim.gif)
 
-<font size="1">*Last updated at 2020-03-31 06:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-03-31 12:07:06 MDT.*</font>
 
 Again, for interpretation when the data are noisy like this, remember that it is low *slope* that is good more than low *position*. However, any decrease in slope over time indicate that health systems are getting better at preventing deaths. Any increases in slope mean that treatments are becoming less effective for some reason.
