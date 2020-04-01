@@ -80,6 +80,27 @@ state_nums <-
       dat[ , week_hospitalized_increase := map_int(week_prev_i_list, function(wpi){wpi$week_hospitalized_increase})]
       dat[ , week_death_increase := map_int(week_prev_i_list, function(wpi){wpi$week_death_increase})]
       
+      #determine the day zero (first non-contained case) by getting the growth between 20 and 500 cases and doing the 
+      #math
+      
+      dz <-
+        dat %>%
+        lazy_dt %>%
+        #take the decent part of the early curve big enough for no rounding errors
+        filter(positive >= 20 & positive <= 500) %>%
+        select(date,
+               positive) %>%
+        mutate(log_positive = log(positive)) %>%
+        {
+          lm(date ~ log_positive, .)
+        } %>%
+        {
+          .$coefficients[1]
+        } %>%
+        as.Date(origin = as.Date("1970-01-01"))
+      
+      dat[, day_zero := dz]
+      
       return(dat)
     }
   ) %>% 
@@ -89,6 +110,7 @@ state_nums <-
 state_ct <- length(unique(state_nums$state))
 
 data_time <- Sys.time()
+
 
 
 
