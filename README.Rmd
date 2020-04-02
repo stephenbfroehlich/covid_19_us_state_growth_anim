@@ -128,6 +128,8 @@ If you're here already, you should also check out Datawrapper's excellent [17 (o
 
 This page will be updated just before 5:30 MDT every day which is in coordination with the COVID Tracking Project's daily updates.
 
+It is now April 2, and the death wave is about to begin in earnest in the U.S.. Data visualization is generally the wrong medium to help us lament the dead and the soon-to-be dead. If I find something, I will add it, but the only death-driven visualizations I'm including for now are those that help us understand how health systems are doing preventing COVID-19 infections from becoming COVID-19 deaths. In the meantime, I commend N.T. Wright's article for Time https://time.com/5808495/coronavirus-christianity/ to your reading.
+
 ## Current Animations
 
 ```{r pos_plot_gif_write, include=FALSE}
@@ -224,7 +226,7 @@ animate(
 
 This plot visualizes **infections driving more infections**, and the main take-away is that ***we're all in this together***.  
 
-As of March 28, only Washington State (WA) appears to have had any significant impact on the COVID-19 growth rate, though Massachusetts was doing well for a while. The latest datum from New York starts to look encouraging.
+As of April 1, it did appear for the first time that most states have exited their exponental growth lines ... we will see how this continues over the next few days.
 
 &nbsp;
 
@@ -605,7 +607,7 @@ anim_save(hosp_fn, hosp_anim)
 
 <font size="1">_Last updated at `r data_time` MDT._</font>
 
- It would be surprising if this animation showed any ovbious trends that would indicate any home remidies were driving reduced hospitalizations per infection. Instead, the most likely driver of differences is likely to be age differences in the newly-infected populations.
+It would be surprising if this animation showed any ovbious trends that would indicate any home remidies were driving reduced hospitalizations per infection. Instead, the most likely driver of differences is likely to be age differences in the newly-infected populations.
 
 ### Hospitalizations Driving Deaths
 
@@ -685,4 +687,4 @@ anim_save(death_h_fn, death_h_anim)
 
 <font size="1">_Last updated at `r data_time` MDT._</font>
 
-Again, for interpretation when the data are noisy like this, remember that it is low _slope_ that is good more than low _position_. However, any decrease in slope over time indicate that health systems are getting better at preventing deaths. Any increases in slope mean that treatments are becoming less effective for some reason.
+Again, for interpretation when the data are noisy like this, what we hope to see short of hospitalizations dropping so that the point drops below the curve, is an _increase in slope_ that shows fewer deaths per hospitalization. However, any decrease in slope over time indicate that health systems are getting better at preventing deaths. Any decreases in slope mean that treatments are becoming less effective.
