@@ -81,25 +81,30 @@ state_nums <-
       dat[ , week_death_increase := map_int(week_prev_i_list, function(wpi){wpi$week_death_increase})]
       
       #determine the day zero (first non-contained case) by getting the growth between 20 and 500 cases and doing the 
-      #math
+      #regression back to the intercept
+      try(dz <-
+            dat %>%
+            lazy_dt %>%
+            #take the decent part of the early curve big enough for no rounding errors
+            filter(positive >= 10 & positive <= 100) %>%
+            select(date,
+                   positive) %>%
+            mutate(log_positive = log(positive)) %>%
+            {
+              lm(date ~ log_positive, .)
+            } %>%
+            {
+              .$coefficients[1] + log(50) * .$coefficients[2]
+            } %>%
+            as.Date(origin = as.Date("1970-01-01")),
+          silent = TRUE
+      )
       
-      dz <-
-        dat %>%
-        lazy_dt %>%
-        #take the decent part of the early curve big enough for no rounding errors
-        filter(positive >= 20 & positive <= 500) %>%
-        select(date,
-               positive) %>%
-        mutate(log_positive = log(positive)) %>%
-        {
-          lm(date ~ log_positive, .)
-        } %>%
-        {
-          .$coefficients[1]
-        } %>%
-        as.Date(origin = as.Date("1970-01-01"))
-      
-      dat[, day_zero := dz]
+      if(exists("dz")) {
+        dat[, day_zero := dz]
+      } else {
+        dat[, day_zero := as.Date(NA)]
+      }
       
       return(dat)
     }
@@ -112,8 +117,6 @@ state_ct <- length(unique(state_nums$state))
 data_time <- Sys.time()
 
 
-
-
 ```
 
 
@@ -122,6 +125,8 @@ The fight against COVID-19 in the United States is generally coordinated and adm
 This anmation, inspired by Aatish Bhatia's version based on the [Johns Hopkins Data](https://github.com/CSSEGISandData/COVID-19) at https://aatishb.com/covidtrends/. As Johns Hopkins has stopped tracking U.S. State-level data, I instead am pulling that from the [COVID Tracking Project](https://covidtracking.com/)'s very simple and easy-to-use API, which provides a handy JSON download.
 
 If you're here already, you should also check out Datawrapper's excellent [17 (or so) responsible live visualizations about the coronavirus, for you to use](https://blog.datawrapper.de/coronaviruscharts/) page.
+
+This page will be updated just before 5:30 MDT every day which is in coordination with the COVID Tracking Project's daily updates.
 
 ## Current Animations
 
@@ -155,7 +160,7 @@ pos_plot <-
                              end = .75,
                              direction = -1) +
       labs(title = "COVID-19 Infections by State  -  {format(frame_along, format = '%b-%e')}",
-           x = "Total Positive Test Results",
+           x = "Total Positive Tests",
            y = "Positive Tests in Preceeding Week") +
       scale_x_log10() +
       scale_y_log10() +
@@ -222,6 +227,191 @@ This plot visualizes **infections driving more infections**, and the main take-a
 As of March 28, only Washington State (WA) appears to have had any significant impact on the COVID-19 growth rate, though Massachusetts was doing well for a while. The latest datum from New York starts to look encouraging.
 
 &nbsp;
+
+```{r pos_ft_plot_gif_write, include=FALSE}
+
+pos_ft_plot <-
+  {
+    state_nums %>%
+      filter(!is.na(day_zero) & obs_date >= day_zero & positive > 1) %>% 
+      arrange(state, obs_date) %>% 
+      
+      ggplot(
+        aes(
+          y = positive,
+          x = (obs_date - day_zero) %>% as.numeric(unit = "days"),
+          colour = fct_reorder(state, positive, .fun = max),
+          label = state,
+          group = state
+        )
+      ) +
+      geom_line(colour = "black", alpha = .1) +
+      geom_point(alpha = .75, stroke = 0) +
+      geom_text(
+        size = 2.5,
+        hjust = -0.1,
+        vjust = 1.1,
+        alpha = .75
+      ) +
+      scale_colour_viridis_d(guide = FALSE,
+                             end = .75,
+                             direction = -1) +
+      labs(title = "COVID-19 Infections by State  -  {format(frame_along, format = '%b-%e')}",
+           y = "Total Positive Tests",
+           x = "Days Since 50 Cases") +
+      scale_y_log10() +
+      theme_minimal() +
+      transition_reveal(obs_date) +
+      theme(
+        axis.title.y = element_text(margin = margin(r = 17.5)),
+        axis.title.x = element_text(hjust = 1),
+        plot.title.position = "plot"
+      ) +
+      view_follow() +
+      annotate(
+        "label",
+        x = Inf, 
+        y = 1,
+        hjust = 1, vjust = 0,
+        label = "© Stephen Froehlich, MIT License\nUpdated Charts @ https://git.io/Jv7YM",
+        alpha = .15,
+        size = 2,
+        label.padding = unit(0, "lines"),
+        label.size = 0
+      )
+  }
+
+pos_ft_anim <-
+  animate(
+    pos_ft_plot ,
+    duration = gif_params$duration,
+    fps = gif_params$fps,
+    start_pause = gif_params$start_pause_sec * gif_params$fps,
+    end_pause = round(gif_params$end_pause_sec * gif_params$fps * 1.5,0),
+    height = gif_params$height,
+    width = gif_params$width,
+    res = gif_params$res
+  )
+
+pos_ft_fn <- "covid_growth_ft_anim.gif"
+
+anim_save(pos_ft_fn, pos_ft_anim)
+
+#generate the social-media sized chart
+animate(
+  pos_ft_plot,
+  duration = gif_params$duration,
+  fps = 5,
+  start_pause = gif_params$start_pause_sec * 5,
+  end_pause = round(gif_params$end_pause_sec * 5 * 1.5,0),
+  height = gif_params$height_sm,
+  width = gif_params$width_sm,
+  res = gif_params$res_sm
+) %>%
+  {
+    anim_save("covid_growth_ft_anim_sm.gif", .)
+  }
+
+```
+
+![](`r pos_ft_fn`)
+
+<font size="1">_Last updated at `r data_time` MDT._</font>
+
+This is an adaptation of [@jburnmurdoch](https://twitter.com/jburnmurdoch)'s excellent work for the Financial Times at https://www.ft.com/coronavirus-latest, but again with US state-level data. It is better at showing where the infection growth rate is higher and where it is not. Also it gives a decent sense of history for key states so you can see when things began to diverge.
+
+
+```{r pos_ft_wk_plot_gif_write, include=FALSE}
+
+pos_ft_wk_plot <-
+  {
+    state_nums %>%
+      filter(!is.na(day_zero) & obs_date >= day_zero & week_positive_increase > 1) %>% 
+      arrange(state, obs_date) %>% 
+      
+      ggplot(
+        aes(
+          y = week_positive_increase,
+          x = (obs_date - day_zero) %>% as.numeric(unit = "days"),
+          colour = fct_reorder(state, positive, .fun = max),
+          label = state,
+          group = state
+        )
+      ) +
+      geom_line(colour = "black", alpha = .1) +
+      geom_point(alpha = .75, stroke = 0) +
+      geom_text(
+        size = 2.5,
+        hjust = -0.1,
+        vjust = 1.1,
+        alpha = .75
+      ) +
+      scale_colour_viridis_d(guide = FALSE,
+                             end = .75,
+                             direction = -1) +
+      labs(title = "COVID-19 Infections by State  -  {format(frame_along, format = '%b-%e')}",
+           y = "Positive Tests in Preceeding Week",
+           x = "Days Since 50 Cases") +
+      scale_y_log10() +
+      theme_minimal() +
+      transition_reveal(obs_date) +
+      theme(
+        axis.title.y = element_text(margin = margin(r = 17.5)),
+        axis.title.x = element_text(hjust = 1),
+        plot.title.position = "plot"
+      ) +
+      view_follow() +
+      annotate(
+        "label",
+        x = Inf, 
+        y = 1,
+        hjust = 1, vjust = 0,
+        label = "© Stephen Froehlich, MIT License\nUpdated Charts @ https://git.io/Jv7YM",
+        alpha = .15,
+        size = 2,
+        label.padding = unit(0, "lines"),
+        label.size = 0
+      )
+  }
+
+pos_ft_wk_anim <-
+  animate(
+    pos_ft_wk_plot ,
+    duration = gif_params$duration,
+    fps = gif_params$fps,
+    start_pause = gif_params$start_pause_sec * gif_params$fps,
+    end_pause = gif_params$end_pause_sec * gif_params$fps,
+    height = gif_params$height,
+    width = gif_params$width,
+    res = gif_params$res
+  )
+
+pos_ft_wk_fn <- "covid_growth_ft_wk_anim.gif"
+
+anim_save(pos_ft_wk_fn, pos_ft_wk_anim)
+
+#generate the social-media sized chart
+animate(
+  pos_ft_wk_plot,
+  duration = gif_params$duration,
+  fps = 5,
+  start_pause = gif_params$start_pause_sec * 5,
+  end_pause = gif_params$end_pause_sec * 5,
+  height = gif_params$height_sm,
+  width = gif_params$width_sm,
+  res = gif_params$res_sm
+) %>%
+  {
+    anim_save("covid_growth_ft_wk_anim_sm.gif", .)
+  }
+
+```
+
+![](`r pos_ft_wk_fn`)
+
+<font size="1">_Last updated at `r data_time` MDT._</font>
+
+This is the most sensitive animation of the bunch ... it will be the quickest indicator of changes in new infections. It is also an adaptation of [@jburnmurdoch](https://twitter.com/jburnmurdoch)'s work for the Financial Times at https://www.ft.com/coronavirus-latest. It shows new positive test results in the preceeding week over time.  
 
 ```{r death_p_plot_gif_write, include=FALSE}
 
@@ -307,11 +497,14 @@ For interpretation when the data are noisy like this, remember that it is low _s
 
 &nbsp;
 
-## Social Media-sized gif
+## Social Media-sized gifs
 
-For now I am only sharing a social-media sized gif for the "COVID-19 Infections by State" as that's the only one with a clear, compelling narrative at the moment. When do you post, please link back to https://github.com/stephenbfroehlich/covid_19_us_state_growth_anim or https://git.io/Jv7YM so that people can get updated data as it comes out and also see the data provenance - just right-click, copy, and paste.  For Twitter, LinkedIn and possibly others save the gif locally and upload it as a photo to get the gif to work.
+Please feel free to share any of these with your networks. When do you post, please link back to https://git.io/Jv7YM so that people can get updated data and also see the data provenance - just right-click, copy, and paste.  For Twitter, LinkedIn and possibly others save the gif locally and upload it as a photo to get the gif to work.
 
 ![](covid_growth_anim_sm.gif)
+![](covid_growth_ft_anim_sm.gif)
+![](covid_growth_ft_wk_anim_sm.gif)
+
 
 &nbsp;
 
