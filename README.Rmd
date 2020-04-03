@@ -26,7 +26,7 @@ gif_params <-
     fps = 15L,
     duration = 30L,
     start_pause_sec = 2L,
-    end_pause_sec = 5L,
+    end_pause_sec = 8L,
     width = 800L,
     height = 600L,
     res = 125L,
