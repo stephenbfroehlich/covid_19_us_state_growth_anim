@@ -126,7 +126,7 @@ This anmation, inspired by Aatish Bhatia's version based on the [Johns Hopkins D
 
 If you're here already, you should also check out Datawrapper's excellent [17 (or so) responsible live visualizations about the coronavirus, for you to use](https://blog.datawrapper.de/coronaviruscharts/) page.
 
-This page will be updated just before 5:30 MDT every day which is in coordination with the COVID Tracking Project's daily updates.
+This page will be updated just after 6pm MDT every day which is in coordination with the COVID Tracking Project's daily updates.
 
 It is now April 2, and the death wave is about to begin in earnest in the U.S.. Data visualization is generally the wrong medium to help us lament the dead and the soon-to-be dead. If I find something, I will add it, but the only death-driven visualizations I'm including for now are those that help us understand how health systems are doing preventing COVID-19 infections from becoming COVID-19 deaths. In the meantime, I commend N.T. Wright's article for Time https://time.com/5808495/coronavirus-christianity/ to your reading.
 
@@ -320,7 +320,7 @@ animate(
 
 <font size="1">_Last updated at `r data_time` MDT._</font>
 
-This is an adaptation of [@jburnmurdoch](https://twitter.com/jburnmurdoch)'s excellent work for the Financial Times at https://www.ft.com/coronavirus-latest, but again with US state-level data. It is better at showing where the infection growth rate is higher and where it is not. Also it gives a decent sense of history for key states so you can see when things began to diverge.
+This is an adaptation of [jburnmurdoch](https://twitter.com/jburnmurdoch)'s excellent work for the Financial Times at https://www.ft.com/coronavirus-latest, but again with US state-level data. It is better at showing where the infection growth rate is higher and where it is not. Also it gives a decent sense of history for key states so you can see when things began to diverge.
 
 
 ```{r pos_ft_wk_plot_gif_write, include=FALSE}
