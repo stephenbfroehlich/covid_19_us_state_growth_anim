@@ -16,7 +16,7 @@ Current Animations
 
 ![](covid_growth_anim.gif)
 
-<font size="1">*Last updated at 2020-04-16 18:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-04-17 18:07:06 MDT.*</font>
 
 This plot visualizes **infections driving more infections**, and the main take-away is that ***we're all in this together***.
 
@@ -26,19 +26,19 @@ As of April 1, it did appear for the first time that most states have exited the
 
 ![](covid_growth_ft_anim.gif)
 
-<font size="1">*Last updated at 2020-04-16 18:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-04-17 18:07:06 MDT.*</font>
 
 This is an adaptation of [jburnmurdoch](https://twitter.com/jburnmurdoch)'s excellent work for the Financial Times at <https://www.ft.com/coronavirus-latest>, but again with US state-level data. It is better at showing where the infection growth rate is higher and where it is not. Also it gives a decent sense of history for key states so you can see when things began to diverge.
 
 ![](covid_growth_ft_wk_anim.gif)
 
-<font size="1">*Last updated at 2020-04-16 18:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-04-17 18:07:06 MDT.*</font>
 
 This is the most sensitive animation of the bunch ... it will be the quickest indicator of changes in new infections. It is also an adaptation of \[@jburnmurdoch\](<https://twitter.com/jburnmurdoch>)'s work for the Financial Times at <https://www.ft.com/coronavirus-latest>. It shows new positive test results in the preceeding week over time.
 
 ![](covid_death_p_anim.gif)
 
-<font size="1">*Last updated at 2020-04-16 18:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-04-17 18:07:06 MDT.*</font>
 
 This plot visualizes **infections driving deaths**.
 
@@ -81,7 +81,7 @@ The [COVID Tracking Project](https://covidtracking.com/) is only able to get hos
 
 ![](covid_hosp_anim.gif)
 
-<font size="1">*Last updated at 2020-04-16 18:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-04-17 18:07:06 MDT.*</font>
 
 It would be surprising if this animation showed any ovbious trends that would indicate any home remidies were driving reduced hospitalizations per infection. Instead, the most likely driver of differences is likely to be age differences in the newly-infected populations.
 
@@ -89,6 +89,6 @@ It would be surprising if this animation showed any ovbious trends that would in
 
 ![](covid_death_h_anim.gif)
 
-<font size="1">*Last updated at 2020-04-16 18:07:06 MDT.*</font>
+<font size="1">*Last updated at 2020-04-17 18:07:06 MDT.*</font>
 
 Again, for interpretation when the data are noisy like this, what we hope to see short of hospitalizations dropping so that the point drops below the curve, is an *increase in slope* that shows fewer deaths per hospitalization. However, any decrease in slope over time indicate that health systems are getting better at preventing deaths. Any decreases in slope mean that treatments are becoming less effective.
